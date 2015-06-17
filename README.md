@@ -1,3 +1,26 @@
+## cob_gazebo_plugins (indigo) - 0.6.2-0
+
+The packages in the `cob_gazebo_plugins` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo cob_gazebo_plugins` on `Wed, 17 Jun 2015 10:49:23 -0000`
+
+These packages were released:
+- `cob_gazebo_plugins`
+- `cob_gazebo_ros_control`
+
+Version of package(s) in repository `cob_gazebo_plugins`:
+- upstream repository: https://github.com/ipa320/cob_gazebo_plugins.git
+- release repository: https://github.com/ipa320/cob_gazebo_plugins-release.git
+- rosdistro version: `0.6.1-0`
+- old version: `0.6.1-0`
+- new version: `0.6.2-0`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.8`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.2`
+- vcstools version: `0.1.36`
+
+
 ## cob_gazebo_plugins (indigo) - 0.6.1-0
 
 The packages in the `cob_gazebo_plugins` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo cob_gazebo_plugins --edit` on `Fri, 12 Dec 2014 15:20:54 -0000`
