@@ -1,0 +1,44 @@
+ros-indigo-cob-gazebo-ros-control (0.6.3-0saucy) saucy; urgency=high
+
+  * boost revision
+  * remove trailing whitespaces
+  * migration to package format 2
+  * fix missing dependency
+  * review dependencies
+  * Contributors: ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Mon, 24 Aug 2015 22:00:00 -0000
+
+ros-indigo-cob-gazebo-ros-control (0.6.2-0saucy) saucy; urgency=high
+
+  * using strict_hwi_switch api
+  * more suitable name for plugin
+  * beautify CMakeLists
+  * use hwi_switch api
+  * proper reset of joint limit interface
+  * cleanup output
+  * Contributors: ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Tue, 16 Jun 2015 22:00:00 -0000
+
+ros-indigo-cob-gazebo-ros-control (0.6.1-0saucy) saucy; urgency=high
+
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * enable joint filtering for multi_hwi_gazebo plugin
+  * remove support for X_PID control_methods for simplicity (obsolete anyway)
+  * unify ROS STREAM output
+  * ignore 'robotSimType'
+  * Update README.md
+  * Update README.md
+  * add README for new plugin
+  * correctly reset all interfaces in doSwitchHWInterface
+  * new gazebo_ros_control_plugin supporting multiple hardwareinterfaces and switch on controller_switching
+  * Contributors: Felix Messmer, ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Thu, 11 Dec 2014 23:00:00 -0000
+
+
