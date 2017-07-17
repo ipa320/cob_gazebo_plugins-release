@@ -1,0 +1,12 @@
+Source: ros-kinetic-cob-gazebo-plugins
+Section: misc
+Priority: extra
+Maintainer: Florian Weisshardt <fmw@ipa.fhg.de>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin
+Homepage: http://ros.org/wiki/cob_gazebo_plugins
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-cob-gazebo-plugins
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-cob-gazebo-ros-control
+Description: cob_gazebo_plugins meta-package
