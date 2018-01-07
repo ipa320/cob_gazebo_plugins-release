@@ -1,43 +1,18 @@
-/*********************************************************************
- * Software License Agreement (BSD License)
+/*
+ * Copyright 2017 Fraunhofer Institute for Manufacturing Engineering and Automation (IPA)
  *
- *  Copyright (c) 2013, Open Source Robotics Foundation
- *  Copyright (c) 2013, The Johns Hopkins University
- *  Copyright (c) 2014, Fraunhofer IPA
- *  All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions
- *  are met:
- *
- *   * Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   * Redistributions in binary form must reproduce the above
- *     copyright notice, this list of conditions and the following
- *     disclaimer in the documentation and/or other materials provided
- *     with the distribution.
- *   * Neither the name of the Open Source Robotics Foundation
- *     nor the names of its contributors may be
- *     used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
- *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
- *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.
- *********************************************************************/
+ *   http://www.apache.org/licenses/LICENSE-2.0
 
-/* Author: Dave Coleman, Johnathan Bohren, Felix Messmer
-   Desc:   Hardware Interface for any simulated robot in Gazebo supporting hardware_interface switching
-*/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 
 // cob_gazebo_ros_control
@@ -266,11 +241,7 @@ bool HWISwitchRobotHWSim::initSim(
       // joint->SetMaxForce() must be called if joint->SetAngle() or joint->SetVelocity() are
       // going to be called. joint->SetMaxForce() must *not* be called if joint->SetForce() is
       // going to be called.
-      #if GAZEBO_MAJOR_VERSION > 2
-        joint->SetParam("fmax", 0, joint_effort_limits_[j]);
-      #else
-        joint->SetMaxForce(0, joint_effort_limits_[index]);
-      #endif
+      joint->SetMaxForce(0, joint_effort_limits_[index]);
     }
 
     index++;
@@ -318,15 +289,12 @@ bool HWISwitchRobotHWSim::canSwitch(const std::list<hardware_interface::Controll
   //stopped controllers stay in there current mode as there is no no_operation_mode in gazebo
   for (std::list<hardware_interface::ControllerInfo>::const_iterator list_it = start_list.begin(); list_it != start_list.end(); ++list_it)
   {
-    for (std::vector<hardware_interface::InterfaceResources>::const_iterator res_it = list_it->claimed_resources.begin(); res_it != list_it->claimed_resources.end(); ++res_it)
+    for(std::set<std::string>::iterator set_it = list_it->resources.begin(); set_it != list_it->resources.end(); ++set_it)
     {
-      for(std::set<std::string>::iterator set_it = res_it->resources.begin(); set_it != res_it->resources.end(); ++set_it)
+      if(map_hwinterface_to_joints_.at(list_it->hardware_interface).find(*set_it) == map_hwinterface_to_joints_.at(list_it->hardware_interface).end())
       {
-        if(map_hwinterface_to_joints_.at(res_it->hardware_interface).find(*set_it) == map_hwinterface_to_joints_.at(res_it->hardware_interface).end())
-        {
-          ROS_ERROR_STREAM_NAMED("hwi_switch_robot_hw_sim", "Cannot switch because resource \'" << *set_it << "\' does not provide HW-Interface \'" << res_it->hardware_interface << "\'");
-          return false;
-        }
+        ROS_ERROR_STREAM_NAMED("hwi_switch_robot_hw_sim", "Cannot switch because resource \'" << *set_it << "\' does not provide HW-Interface \'" << list_it->hardware_interface << "\'");
+        return false;
       }
     }
   }
@@ -338,39 +306,36 @@ void HWISwitchRobotHWSim::doSwitch(const std::list<hardware_interface::Controlle
   //for all controllers to be started
   for (std::list<hardware_interface::ControllerInfo>::const_iterator list_it = start_list.begin(); list_it != start_list.end(); ++list_it)
   {
-    for (std::vector<hardware_interface::InterfaceResources>::const_iterator res_it = list_it->claimed_resources.begin(); res_it != list_it->claimed_resources.end(); ++res_it)
+    //for all joints corresponding to this RobotHW
+    for(unsigned int i=0; i<joint_names_.size(); i++)
     {
-      //for all joints corresponding to this RobotHW
-      for(unsigned int i=0; i<joint_names_.size(); i++)
+      //if joint is in resource list of controller to be started
+      if(list_it->resources.find(joint_names_[i]) != list_it->resources.end())
       {
-        //if joint is in resource list of controller to be started
-        if(res_it->resources.find(joint_names_[i]) != res_it->resources.end())
+        if(map_hwinterface_to_controlmethod_.find(list_it->hardware_interface) != map_hwinterface_to_controlmethod_.end())
         {
-          if(map_hwinterface_to_controlmethod_.find(res_it->hardware_interface) != map_hwinterface_to_controlmethod_.end())
-          {
-            ControlMethod current_control_method = map_hwinterface_to_controlmethod_.find(res_it->hardware_interface)->second;
+          ControlMethod current_control_method = map_hwinterface_to_controlmethod_.find(list_it->hardware_interface)->second;
 
-            ///semantic Zero
-            joint_position_command_[i] = joint_position_[i];
-            joint_velocity_command_[i] = 0.0;
-            joint_effort_command_[i] = 0.0;
+          ///semantic Zero
+          joint_position_command_[i] = joint_position_[i];
+          joint_velocity_command_[i] = 0.0;
+          joint_effort_command_[i] = 0.0;
 
-            ///call setCommand once so that the JointLimitsInterface receive the correct value on their getCommand()!
-            try{  pj_interface_.getHandle(joint_names_[i]).setCommand(joint_position_command_[i]);  }
-            catch(const hardware_interface::HardwareInterfaceException&){}
-            try{  vj_interface_.getHandle(joint_names_[i]).setCommand(joint_velocity_command_[i]);  }
-            catch(const hardware_interface::HardwareInterfaceException&){}
-            try{  ej_interface_.getHandle(joint_names_[i]).setCommand(joint_effort_command_[i]);  }
-            catch(const hardware_interface::HardwareInterfaceException&){}
+          ///call setCommand once so that the JointLimitsInterface receive the correct value on their getCommand()!
+          try{  pj_interface_.getHandle(joint_names_[i]).setCommand(joint_position_command_[i]);  }
+          catch(const hardware_interface::HardwareInterfaceException&){}
+          try{  vj_interface_.getHandle(joint_names_[i]).setCommand(joint_velocity_command_[i]);  }
+          catch(const hardware_interface::HardwareInterfaceException&){}
+          try{  ej_interface_.getHandle(joint_names_[i]).setCommand(joint_effort_command_[i]);  }
+          catch(const hardware_interface::HardwareInterfaceException&){}
 
-            ///reset joint_limit_interfaces
-            pj_sat_interface_.reset();
-            pj_limits_interface_.reset();
+          ///reset joint_limit_interfaces
+          pj_sat_interface_.reset();
+          pj_limits_interface_.reset();
 
-            joint_control_methods_[i] = current_control_method;
+          joint_control_methods_[i] = current_control_method;
 
-            ROS_DEBUG_STREAM_NAMED("hwi_switch_robot_hw_sim", "Resource \'" << joint_names_[i] << "\' switched to HW-Interface \'" << res_it->hardware_interface << "\'");
-          }
+          ROS_DEBUG_STREAM_NAMED("hwi_switch_robot_hw_sim", "Resource \'" << joint_names_[i] << "\' switched to HW-Interface \'" << list_it->hardware_interface << "\'");
         }
       }
     }
