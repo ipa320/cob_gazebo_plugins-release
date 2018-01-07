@@ -2,10 +2,15 @@
 Changelog for package cob_gazebo_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.6.7 (2018-01-07)
+0.7.2 (2018-01-07)
 ------------------
-* Merge pull request `#33 <https://github.com/ipa320/cob_gazebo_plugins/issues/33>`_ from ipa320/indigo_release_candidate
-  Indigo release candidate
+* Merge pull request `#34 <https://github.com/ipa320/cob_gazebo_plugins/issues/34>`_ from ipa320/kinetic_release_candidate
+  Kinetic release candidate
+* Merge pull request `#32 <https://github.com/ipa320/cob_gazebo_plugins/issues/32>`_ from ipa-fxm/kinetic_dev
+  [kinetic] updates from indigo_dev
+* Merge branch 'indigo_dev' of github.com:ipa320/cob_gazebo_plugins into kinetic_dev
+  Conflicts:
+  .travis.yml
 * Merge pull request `#31 <https://github.com/ipa320/cob_gazebo_plugins/issues/31>`_ from ipa-fxm/update_maintainer
   update maintainer
 * update maintainer
@@ -13,6 +18,12 @@ Changelog for package cob_gazebo_plugins
   use license apache 2.0
 * use license apache 2.0
 * Contributors: Felix Messmer, ipa-fxm, ipa-uhr-mk
+
+0.7.1 (2017-07-17)
+------------------
+
+0.7.0 (2017-07-17)
+------------------
 
 0.6.6 (2017-07-17)
 ------------------
