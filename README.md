@@ -1,3 +1,28 @@
+## cob_gazebo_plugins (noetic) - 0.7.5-1
+
+The packages in the `cob_gazebo_plugins` repository were released into the `noetic` distro by running `/usr/bin/bloom-release cob_gazebo_plugins --rosdistro noetic` on `Sat, 26 Sep 2020 15:49:58 -0000`
+
+These packages were released:
+- `cob_gazebo_plugins`
+- `cob_gazebo_ros_control`
+
+Version of package(s) in repository `cob_gazebo_plugins`:
+
+- upstream repository: https://github.com/ipa320/cob_gazebo_plugins.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.7.5-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.8`
+- catkin_pkg version: `0.4.22`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## cob_gazebo_plugins (kinetic) - 0.7.5-1
 
 The packages in the `cob_gazebo_plugins` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release cob_gazebo_plugins --rosdistro kinetic` on `Sat, 26 Sep 2020 15:41:42 -0000`
