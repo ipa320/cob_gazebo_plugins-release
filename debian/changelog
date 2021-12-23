@@ -1,0 +1,107 @@
+ros-noetic-cob-gazebo-plugins (0.7.6-1focal) focal; urgency=high
+
+  * Merge pull request #49 <https://github.com/ipa320/cob_gazebo_plugins/issues/49> from fmessmer/feature/mimic_plugin
+    add MimicJoint gazebo plugin
+  * set max force for mimic joints
+  * fix catkin_lint
+  * fix plugin
+  * export plugin
+  * debug plugin
+  * add MimicJoint gazebo plugin
+  * Contributors: Felix Messmer, fmessmer
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Wed, 22 Dec 2021 23:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.5-1focal) focal; urgency=high
+
+  * Merge pull request #47 <https://github.com/ipa320/cob_gazebo_plugins/issues/47> from fmessmer/test_noetic
+    test noetic
+  * Bump CMake version to avoid CMP0048 warning
+  * Contributors: Felix Messmer, fmessmer
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Fri, 25 Sep 2020 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.4-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Tue, 17 Mar 2020 23:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.3-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Mon, 05 Aug 2019 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.2-1focal) focal; urgency=high
+
+  * Merge pull request #34 <https://github.com/ipa320/cob_gazebo_plugins/issues/34> from ipa320/kinetic_release_candidate
+    Kinetic release candidate
+  * Merge pull request #32 <https://github.com/ipa320/cob_gazebo_plugins/issues/32> from ipa-fxm/kinetic_dev
+    [kinetic] updates from indigo_dev
+  * Merge branch 'indigo_dev' of github.com:ipa320/cob_gazebo_plugins into kinetic_dev
+    Conflicts:
+    .travis.yml
+  * Merge pull request #31 <https://github.com/ipa320/cob_gazebo_plugins/issues/31> from ipa-fxm/update_maintainer
+    update maintainer
+  * update maintainer
+  * Merge pull request #28 <https://github.com/ipa320/cob_gazebo_plugins/issues/28> from ipa-fxm/APACHE_license
+    use license apache 2.0
+  * use license apache 2.0
+  * Contributors: Felix Messmer, ipa-fxm, ipa-uhr-mk
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Sat, 06 Jan 2018 23:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.1-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Sun, 16 Jul 2017 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.7.0-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Sun, 16 Jul 2017 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.6-1focal) focal; urgency=high
+
+  * manually fix changelog
+  * Contributors: ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Sun, 16 Jul 2017 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.5-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Sun, 09 Oct 2016 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.4-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Thu, 31 Mar 2016 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.3-1focal) focal; urgency=high
+
+  * migration to package format 2
+  * review dependencies
+  * Contributors: ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Mon, 24 Aug 2015 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.2-1focal) focal; urgency=high
+
+
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Tue, 16 Jun 2015 22:00:00 -0000
+
+ros-noetic-cob-gazebo-plugins (0.6.1-1focal) focal; urgency=high
+
+  * new gazebo_ros_control_plugin supporting multiple hardwareinterfaces and switch on controller_switching
+  * Contributors: ipa-fxm
+
+ -- Felix Messmer <fxm@ipa.fhg.de>  Thu, 11 Dec 2014 23:00:00 -0000
+
+
